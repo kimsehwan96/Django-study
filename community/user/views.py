@@ -1,8 +1,32 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password #DB에 암호화된 비밀번호가 저장됨. 필수
 from .models import User
 # Create your views here.
+
+
+def login(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    elif request.method == 'POST':
+        username = request.POST.get('username', None)
+        password = request.POST.get('password', None)
+
+        res_data = {}
+
+        if not (username and password):
+            res_data['error'] = '모든 값을 입력해야합니다'
+        else:
+            user = User.objects.get(username=username) #username <- 클래스의 필드명 = username <-입력받은 변수
+            if check_password(password, user.password):
+                pass
+                # 비밀번호 일치하는 부분
+                # 세션처리 및 redirect 필요
+            else:
+                res_data['error'] = '비밀번호를 틀렸습니다.'
+
+        return render(request, 'login.html', res_data)
+
 
 def register(request):
     if request.method == 'GET':
