@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from user.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls), # ~~~.com/admin/이 하위에 있는 것들은 admin.site.urls로 넘긴다.
-    path('user/', include('user.urls'))
+    path('user/', include('user.urls')),
+    path('', home),
 ]
