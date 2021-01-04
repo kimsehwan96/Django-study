@@ -15,10 +15,12 @@
             <tbody class="text-dark">
                 <!-- boards가 context로 전달되었고 각 객체는 For문 안에서 board로 사용 -->
                 {% for board in boards %}
-                <th>{{board.id }}</th>
-                <td>{{ board.title }}</td>
-                <td>{{ board.writer }}</td>
-                <td>{{ board.registered_dttm }}</td>
+                <tr>
+                    <th>{{board.id }}</th>
+                    <td>{{ board.title }}</td>
+                    <td>{{ board.writer }}</td>
+                    <td>{{ board.registered_dttm }}</td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
