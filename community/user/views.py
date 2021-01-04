@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password, check_password #DB에 암호화된 비밀번호가 저장됨. 필수
+from django.views.decorators.http import require_http_methods #Http Method를 강제하기 위한(허용된 메서드만 허용)
 from .models import User
 from .forms import LoginForm
 # Create your views here.
@@ -45,11 +46,17 @@ def logout(request):
 
 #         return render(request, 'login.html', res_data)
 
+@require_http_methods(['GET', 'POST']) #이 데코레이터가 있으면 GET, POST 메서드만 허용
 def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST) #POST에 있는 데이터가 form에 들어감
         if form.is_valid(): #form 인스턴스는 is_vaild 갖고있다.
-            return redirect('/')
+            #두개의 값을 모두 입력하면(폼클래스에) 밑에 리턴 코드 실행
+            #유효하지 않으면 폼안에 에러정보가 들어간다.
+            #값이 들어있는지 아닌지만 판단한다.
+            #우리가 직접 폼 클래스에 오버라이드해서 작성
+            request.session['user'] = form.user_id #form에 self.user_id = user.id 로 받아옴
+            return redirect('/') #정상이면 리다이렉트
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form' : form})
