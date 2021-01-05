@@ -12,6 +12,8 @@ class Board(models.Model):
                                  #외래키에 해당하는 사용자가 삭제되면 그 키를 갖고있는 데이터들도 모두 삭제 -> CASCADE
                                  #models.SET_NULL, models.SET_DEFAULT 같은 옵션도 있음.
 
+    tags = models.ManyToManyField('tag.Tag', verbose_name='태그') #다대다 관계 생성
+
     registered_dttm = models.DateTimeField(auto_now_add=True, 
                                   verbose_name="등록시간")
 
