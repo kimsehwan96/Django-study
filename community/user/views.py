@@ -7,12 +7,7 @@ from .forms import LoginForm
 # Create your views here.
 
 def home(request):
-    user_id = request.session.get('user') ##login에서 request.session['user']에 user.id 를 넣어줬기 때문
-    #세션 처리 로직
-    if user_id:
-        user = User.objects.get(pk=user_id)
-        return HttpResponse(user.username)
-    return HttpResponse('Home')
+    return render(request, 'home.html')
 
 def logout(request):
     #로그아웃은 그냥 세션에 있는 값을 날리면 되것지

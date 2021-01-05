@@ -15,7 +15,7 @@
             <tbody class="text-dark">
                 <!-- boards가 context로 전달되었고 각 객체는 For문 안에서 board로 사용 -->
                 {% for board in boards %}
-                <tr>
+                <tr onclick="location.href='/board/detail/{{ board.id }}'">
                     <th>{{board.id }}</th>
                     <td>{{ board.title }}</td>
                     <td>{{ board.writer }}</td>
@@ -58,7 +58,7 @@
 </div>
 <div class="row">
     <div class="col-12">
-        <a href = "/board/write/"><button class="btn btn-primary"> 글쓰기 </button></a>
+        <button class="btn btn-primary" onclick="location.href='/board/write/'"> 글쓰기 </button>
     </div>
     
 </div>
