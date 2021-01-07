@@ -8,6 +8,15 @@
                 <input type="text" class="form-control" id="title" placeholder="{{ field.label }}" value="{{ board.title }}" readonly />
                 <label for="contents"> 내용 </label>
                 <textarea class="form-control" readonly>{{ board.contents }} </textarea>
+                <label for="tags">태그</label>
+                <span id="tags" class="form-control">
+                    <!-- {{ board.tags }} tags 객체 밑에 여러 메서드들이 있음, all 하면 쿼리셋 호출 -->
+                    <!-- {{ board.tags.all }} -->
+                    <!-- {% for tag in board.tags.all %}
+                    {{ tag.name }} 파이썬 내장함수 사용가능
+                    {% endfor %} -->
+                    {{ board.tags.all|join:", "}}
+                </span>
             </div>
             <button class="btn btn-primary" onclick="location.href='/board/list'">돌아가기</button>
         </form>
