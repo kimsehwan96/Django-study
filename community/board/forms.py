@@ -15,3 +15,7 @@ class BoardForm(forms.Form):
         },
         widget=forms.Textarea, label="내용") # 템플릿에 전달된다 -> 인수들이
     ## widget=forms.인풋타입 -> templates에 widget type 결정
+    
+    tags = forms.CharField(
+        required=False,
+        widget=forms.Textarea, label="태그")

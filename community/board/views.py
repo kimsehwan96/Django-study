@@ -5,6 +5,7 @@ from django.http import Http404
 from .models import Board
 from .forms import BoardForm
 from user.models import User
+from tag.models import Tag
 # Create your views here.
 
 def board_detail(request, pk):
@@ -25,12 +26,24 @@ def board_write(request):
         form = BoardForm(request.POST)
         if form.is_valid():
             user_id = request.session.get('user')
-            user = User.objects.get(pk=user_id)
+            user = User.objects.get(pk=user_id) 
+
+            tags = form.cleaned_data['tags'].split(',')
             board = Board()
             board.title = form.cleaned_data['title'] #cleaned_data는 BoardForm 클래스가 상속받은 베이스 클래스에 있다.
             board.contents = form.cleaned_data['contents']
             board.writer = user
             board.save()
+
+            for tag in tags:
+                if not tag:
+                    continue
+
+                _tag, _ = Tag.objects.get_or_create(name=tag)
+                board.tags.add(_tag)
+
+
+
 
             return redirect('/board/list')
     else:
