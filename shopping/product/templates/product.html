@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block contents %}
+<div class="row mt-5">
+    <div class="col-12">
+        <table class="table table-light">
+            <thead class="thead-light">
+                <tr>
+                    <th scopre="col">#</th>
+                    <th scopre="col">상품명</th>
+                    <th scopre="col">가격</th>
+                    <th scopre="col">등록날짜</th>
+                </tr>
+            </thead>
+            <tbody class="text-dark">
+                {% for product in product_list %}
+                <tr>
+                    <th scopre="row">{{ product_id }}</th>
+                    <th>{{ product.name }}</th>
+                    <th>{{ product.price }}</th>
+                    <th>{{ product.registered_date }}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- {{ object_list }}  <- 쿼리셋이 보인다. ListView를 상속받은 클래스뷰에서는 이케 받아오기가 가능하넴. -->
+
+{% endblock %}

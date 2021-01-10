@@ -16,7 +16,7 @@ class Product(models.Model):
     stuck = models.IntegerField(
         verbose_name="재고"
         )
-    registered_data = models.DateTimeField(
+    registered_date = models.DateTimeField(
         auto_now_add=True,
         verbose_name="상품 등록 날짜"
     )
