@@ -21,6 +21,9 @@ class Order(models.Model):
         verbose_name="등록 날짜"
         )
 
+    def __str__(self):
+        return str(self.user) + ' ' + str(self.product)
+
     class Meta:
         db_table = 'shopping_order'
         verbose_name = '주문'

@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from user.views import index, RegisterView, LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index), #루트패스는 ''
+    path('register/', RegisterView.as_view()), #루트패스는 ''
+    path('login/', LoginView.as_view())
 ]

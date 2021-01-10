@@ -21,6 +21,9 @@ class Product(models.Model):
         verbose_name="상품 등록 날짜"
     )
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         db_table = 'shopping_product'
         verbose_name = '상품'

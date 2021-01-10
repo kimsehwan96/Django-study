@@ -1,6 +1,7 @@
 from django import forms
 from .models import User
 from django.contrib.auth.hashers import check_password
+
 class LoginForm(forms.Form):
     username = forms.CharField(
         error_messages={ #이렇게 커스텀 에러메세지 제작 가능
