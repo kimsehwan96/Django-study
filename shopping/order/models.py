@@ -16,7 +16,7 @@ class Order(models.Model):
     quantity = models.IntegerField(
         verbose_name="수량"
         )
-    registered_data = models.DateTimeField(
+    registered_date = models.DateTimeField(
         auto_now_add=True,
         verbose_name="등록 날짜"
         )
