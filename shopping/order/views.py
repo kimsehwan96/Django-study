@@ -7,6 +7,7 @@ from .forms import RegisterForm
 from .models import Order
 # Create your views here.
 
+@method_decorator(login_required, name='dispatch')
 class OrderCreate(FormView):
     form_class = RegisterForm
     success_url = '/product/'

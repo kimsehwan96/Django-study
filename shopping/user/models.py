@@ -14,6 +14,14 @@ class User(models.Model):
         auto_now_add=True,
         verbose_name="사용자 등록 날짜"
     )
+    level = models.CharField(
+        max_length=8,
+        verbose_name="등급",
+        choices=(
+            ('admin', '관리자'), #값 / 어떻게 보일지
+            ('user', 'user')
+        )
+    ) #유저 등급 추가
 
     def __str__(self):
         return self.email

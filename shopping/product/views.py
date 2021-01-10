@@ -4,6 +4,8 @@ from django.views.generic.edit import FormView
 from .models import Product
 from .forms import RegisterForm
 from order.forms import RegisterForm as OrderForm
+from user.decorators import admin_required
+from django.utils.decorators import method_decorator
 # Create your views here.
 
 
@@ -13,6 +15,7 @@ class ProductList(ListView):
     #default로 전달되는 context 이름이 object_list인데. 변경 가능
     context_object_name = "product_list" #이게 더 나은듯.
 
+@method_decorator(admin_required, name='dispatch') #관리자만 상품 등록이 가능하도록
 class ProductCreate(FormView):
     template_name = 'register_product.html'
     form_class = RegisterForm
@@ -30,6 +33,5 @@ class ProductDetail(DetailView):
         #이미 생성된 context_data를 받아와서 수정해서 다시 return함다
         #그니까 이미있는 context에 우리가 커스템해서 뭔가 우겨넣기 위한 용도.
         context['form'] = OrderForm(self.request) #이 폼은 생성자를 재정의하였다(request를 전달 받을 수 있도록) request를 받아야 세션 처리가 가능해서
-
-
+        
         return context
