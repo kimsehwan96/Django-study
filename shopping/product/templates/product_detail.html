@@ -29,8 +29,9 @@
                         <button type="submit" class="btn btn-primary">주문하기</button>
                     </form>
                 </li>
-                <li class="list-group-item">{{ product.price|intcomma }}</li>
-                <li class="list-group-item">{{ product.registered_date|date:'Y-m-d H:i' }}</li>
+                <li class="list-group-item">가격 :{{ product.price|intcomma }}</li>
+                <li class="list-group-item">등록 날짜 : {{ product.registered_date|date:'Y-m-d H:i' }}</li>
+                <li class="list-group-item">재고 : {{ product.stock }} 개</li>
                 <li class="list-group-item">{{ product.description|safe }}</li>
                 <!-- 필터를 걸면 html 태그로 변환되서 나온다 (매우 중요!) -->
             </ul>
