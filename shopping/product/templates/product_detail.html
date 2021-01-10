@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block contents %}
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card" style="width: 100%;">
+            <div class="card-body">
+                <h5  class="card-title">{{ product.name }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ product.price|intcomma }}</li>
+                <li class="list-group-item">{{ product.registered_date|date:'Y-m-d H:i' }}</li>
+                <li class="list-group-item">{{ product.description|safe }}</li>
+                <!-- 필터를 걸면 html 태그로 변환되서 나온다 (매우 중요!) -->
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <a href="/product/">목록보기</a>
+    </div>
+</div>
+
+
+{% endblock %}
