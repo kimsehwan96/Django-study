@@ -13,7 +13,7 @@ class Product(models.Model):
     description = models.TextField(
         verbose_name="상품설명"
     )
-    stuck = models.IntegerField(
+    stock = models.IntegerField(
         verbose_name="재고"
         )
     registered_date = models.DateTimeField(

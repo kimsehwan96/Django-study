@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 {% block contents %}
 <div class="row mt-5">
     <div class="col-12">
@@ -16,8 +17,9 @@
                 <tr>
                     <th scopre="row">{{ product_id }}</th>
                     <th>{{ product.name }}</th>
-                    <th>{{ product.price }}</th>
-                    <th>{{ product.registered_date }}</th>
+                    <th>{{ product.price |intcomma }} 원</th>
+                    <th>{{ product.registered_date|date:'Y-m-d H:i' }}</th>
+                    <!-- django builtin filter 검색해보기 -->
                 </tr>
                 {% endfor %}
             </tbody>
