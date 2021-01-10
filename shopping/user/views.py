@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic.edit import FormView
 from .forms import ResgisterForm, LoginForm
 # Create your views here.
@@ -25,3 +25,12 @@ class LoginView(FormView):
         self.request.session['user'] = form.email
         return super().form_valid(form)
     #내가 조진 삽질 -> form_vaild가 아니라 form_valid임
+
+
+
+def logout(request):
+
+    if 'user' in request.session:
+        del(request.session['user'])
+
+    return redirect('/')
